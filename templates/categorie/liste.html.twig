@@ -1,0 +1,52 @@
+{% extends 'accueil.html.twig' %}
+
+{% block title %}Gestion des Categories{% endblock %}
+{% block titleh1 %}Gestion des Categories{% endblock %}
+{% block Item %}Categories{% endblock %}
+
+
+{% block body %}
+
+
+<div class="row">
+    <div class="container col-md-6">
+        <div class="card">
+            <div class="card-header text-center bg-primary text-white">Liste des categories</div>
+            <div class="card-body">
+                <table class="table table-striped table-bordered">
+                    <thead class="thead-dark text-center text-white">
+                    <tr>
+                        <th scope="col">Identifiant</th>
+                        <th scope="col">Nom Categorie</th>
+                        <th scope="col" colspan="2">Action</th>
+                    </tr>
+                    </thead>
+                    {% for c in categories %}
+                    <tr>
+                        <th scope="row">{{ c.id }}</th>
+                        <td>{{ c.nomCat }}</td>
+                        <td class="btn btn-outline-warning">
+                            <i class="fas fa-th-list"> <a href="{{ path('categorie_edit', {'id': c.id}) }} ">Edit</a></i>
+                        </td>
+                        <td class="btn btn-outline-danger">
+                            <i class="fas fa-trash"> <a href="{{ path('categorie_delete', {'id': c.id}) }}">Supr</a></i>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="container col-md-6">
+        <div class="card">
+            <div class="card-header text-center bg-primary text-white">Formulaire de gestion des produits</div>
+            <div class="card-body">
+                {{ form(form) }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+
